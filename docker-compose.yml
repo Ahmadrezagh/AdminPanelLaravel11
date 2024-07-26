@@ -11,8 +11,6 @@ services:
             - .:/var/www/html
         depends_on:
             - db
-        networks:
-            - app-network
 
     db:
         image: mariadb
@@ -24,8 +22,6 @@ services:
             MYSQL_PASSWORD: laravel_password
         volumes:
             - dbdata:/var/lib/mysql
-        networks:
-            - app-network
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -36,12 +32,6 @@ services:
             - "8080:80"
         depends_on:
             - db
-        networks:
-            - app-network
 
 volumes:
     dbdata:
-
-networks:
-    app-network:
-        driver: bridge
