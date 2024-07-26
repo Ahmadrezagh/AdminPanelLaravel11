@@ -21,13 +21,17 @@ class PermissionServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('permissions'))
-        {
-            Permission::all()->map(function ($permission) {
-                Gate::define($permission->key , function ($user) use ($permission) {
-                    return $user->hasPermission($permission);
+        try{
+            if (Schema::hasTable('permissions'))
+            {
+                Permission::all()->map(function ($permission) {
+                    Gate::define($permission->key , function ($user) use ($permission) {
+                        return $user->hasPermission($permission);
+                    });
                 });
-            });
+            }
+        }catch (\Exception $exception){
+
         }
     }
 }
