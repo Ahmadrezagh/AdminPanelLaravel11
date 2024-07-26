@@ -1,37 +1,47 @@
 version: '3'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - .:/var/www/html
-    depends_on:
-      - db
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html
+        depends_on:
+            - db
+        networks:
+            - app-network
 
-  db:
-    image: mariadb
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel_user
-      MYSQL_PASSWORD: laravel_password
-    volumes:
-      - dbdata:/var/lib/mysql
+    db:
+        image: mariadb
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: laravel
+            MYSQL_USER: laravel_user
+            MYSQL_PASSWORD: laravel_password
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - app-network
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: password
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: db
+            MYSQL_ROOT_PASSWORD: password
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+        networks:
+            - app-network
 
 volumes:
-  dbdata:
+    dbdata:
+
+networks:
+    app-network:
+        driver: bridge
