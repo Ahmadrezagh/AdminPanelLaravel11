@@ -17,7 +17,7 @@ class SettingSeeder extends Seeder
             [   'key' =>'name',
                 'type'=>'string',
                 'title'=>'نام وبسایت',
-                'value'=>'پنل ادمین لاراول ۱۰',
+                'value'=>'پنل ادمین لاراول ۱۱',
                 'setting_group_id'=>'1'
             ],
             [   'key' =>'logo',
