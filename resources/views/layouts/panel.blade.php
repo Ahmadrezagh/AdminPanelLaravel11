@@ -53,7 +53,11 @@
     <!-- CkEditor -->
     <script src="https://cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
 
-
+    <style>
+        .cke_notification_warning{
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="main-body leftmenu">

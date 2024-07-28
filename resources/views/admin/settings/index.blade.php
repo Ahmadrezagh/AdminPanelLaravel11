@@ -46,7 +46,7 @@
                                     <input class="form-control" name="settings[{{$setting->key}}]" type="tel" value="{{ $setting->value }}">
 
                                 @elseif($setting->type == 'textarea')
-                                    <textarea name="settings[{{$setting->key}}]" class="form-control" >{{ $setting->value }}</textarea>
+                                    <textarea name="settings[{{$setting->key}}]" class="form-control froala" >{{ $setting->value }}</textarea>
 
                                 @elseif($setting->type == 'file')
                                     <div class="custom-file">
