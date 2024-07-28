@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\User;
 
+use App\Rules\IranPhoneNumberRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'name' => ['required'],
             'password' => ['nullable','confirmed'],
             'email' => ['required', Rule::unique('users', 'email')->ignore($this->id)],
-            'phone' => ['required', Rule::unique('users', 'phone')->ignore($this->id)],
+            'phone' => ['required', Rule::unique('users', 'phone')->ignore($this->id),new IranPhoneNumberRule ],
             'profile_image' => ['nullable', 'file'],
 
         ];

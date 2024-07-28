@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Admin;
 
+use App\Rules\IranPhoneNumberRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,7 +27,7 @@ class StoreAdminRequest extends FormRequest
             'name' => ['required'],
             'password' => ['required','confirmed'],
             'email' => ['required', Rule::unique('users', 'email')],
-            'phone' => ['required', Rule::unique('users', 'phone')],
+            'phone' => ['required', Rule::unique('users', 'phone'),new IranPhoneNumberRule ],
             'profile_image' => ['nullable', 'file'],
         ];
     }
