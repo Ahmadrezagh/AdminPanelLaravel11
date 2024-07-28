@@ -21,48 +21,17 @@
         <div class="col-lg-12">
             <div class="card custom-card overflow-hidden">
                 <div class="card-header">
+
                     <button class="btn btn-primary mb-3"  data-toggle="modal" data-target="#modal-create">افزودن نقش</button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-create">ساخت نقش</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form action="{{route('roles.store')}}" method="post">
-                                    <div class="modal-body">
-                                        @csrf
-
-                                        <div class="form-group">
-                                            <label for="">نام</label>
-                                            <input type="text" class="form-control" name="title">
-                                        </div>
-                                        <div class="row">
-                                            @foreach($permissions as $permission)
-                                                <div class="form-check col-6">
-                                                    <input class="form-check-input " type="checkbox" style="border: 100px"
-                                                           name="permissions[]" value="{{ $permission->id }}" id="defaultCheck{{ $permission->id }}">
-                                                    <label class="form-check-label mx-3" for="defaultCheck{{ $permission->id }}">
-                                                        {{ $permission->title }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">ایجاد</button>
-                                    </div>
-                                </form>
-                            </div>
+                    <x-modal.create id="modal-create" title="ساخت نقش" action="{{route('roles.store')}}" >
+                        <x-form.input title="عنوان"  name="title" />
+                        <div class="row">
+                            @foreach($permissions as $permission)
+                                <x-form.check-input col="col-6" :title="$permission->title" name="permissions[]" :value="$permission->id" id="create-{{$permission->id}}" />
+                            @endforeach
                         </div>
-                    </div>
-                    <!-- /Modal -->
+                    </x-modal.create>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" style="min-height: 500px">
@@ -101,72 +70,17 @@
     <!-- End Row -->
 
     @foreach($roles as $role)
-         <!-- Modal -->
-         <div class="modal fade" id="modal-destroy-{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-             <div class="modal-dialog modal-dialog-centered">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h5 class="modal-title" id="modal-create">حذف نقش</h5>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                             <span aria-hidden="true">&times;</span>
-                         </button>
-                     </div>
 
-                     <form action="{{route('roles.destroy', $role->id)}}" method="post">
-                         <div class="modal-body">
-                             @csrf
-                             @method('DELETE')
-                         </div>
-                         <div class="modal-footer">
-                             <button type="submit" class="btn btn-primary">حذف</button>
-                         </div>
-                     </form>
-                 </div>
+         <x-modal.destroy id="modal-destroy-{{$role->id}}" title="حذف نقش" action="{{route('roles.destroy', $role->id)}}" title="{{$role->title}}" />
+
+         <x-modal.update id="modal-edit-{{$role->id}}" title="ویرایش نقش" action="{{route('roles.update',$role->id)}}" >
+             <x-form.input title="عنوان" value="{{$role->title}}"  name="title" />
+             <div class="row">
+                 @foreach($permissions as $permission)
+                     <x-form.check-input col="col-6" :title="$permission->title" name="permissions[]" :value="$permission->id" id="edit-{{$role->id}}-{{$permission->id}}"  checked="{{$role->hasThisPermission($permission)}}" />
+                 @endforeach
              </div>
-         </div>
-         <!-- /Modal -->
-         <!-- Modal -->
-         <div class="modal fade" id="modal-edit-{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-             <div class="modal-dialog modal-dialog-centered">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <h5 class="modal-title" id="modal-create">ویرایش نقش</h5>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                             <span aria-hidden="true">&times;</span>
-                         </button>
-                     </div>
-
-                     <form action="{{route('roles.update', $role->id)}}" method="post">
-                         <div class="modal-body">
-                             @csrf
-                                @method('PUT')
-                             <div class="form-group">
-                                 <label for="">نام</label>
-                                 <input type="text" class="form-control" name="title" value="{{$role->title}}">
-                             </div>
-                             <div class="row">
-                                 @foreach($permissions as $permission)
-                                     <div class="form-check col-6">
-                                         <input class="form-check-input " type="checkbox"
-                                                name="permissions[]" @if($role->hasThisPermission($permission)) checked @endif value="{{$permission->id}}" id="defaultCheck{{$permission->id}}-{{$role->id}}">
-
-                                         <label class="form-check-label px-4" for="defaultCheck{{$permission->id}}-{{$role->id}}">
-                                             {{$permission->title}}
-                                         </label>
-
-                                     </div>
-                                 @endforeach
-                             </div>
-
-                         </div>
-                         <div class="modal-footer">
-                             <button type="submit" class="btn btn-primary">ویرایش</button>
-                         </div>
-                     </form>
-                 </div>
-             </div>
-         </div>
-         <!-- /Modal -->
+         </x-modal.update>
      @endforeach
 
 

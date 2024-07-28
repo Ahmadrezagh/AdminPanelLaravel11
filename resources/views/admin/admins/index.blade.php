@@ -22,68 +22,19 @@
                 <div class="card-header">
                     <button class="btn btn-primary mb-3"  data-toggle="modal" data-target="#modal-create">افزودن مدیر</button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-name" id="modal-create">ساخت مدیر</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form action="{{route('admins.store')}}" method="post" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                        @csrf
-
-                                        <div class="form-group">
-                                            <label for="">نام</label>
-                                            <input type="text" class="form-control" name="name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">عکس</label>
-                                            <div class="custom-file">
-                                                <input type="file" name="profile_image" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label" for="customFile">Choose file</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">ایمیل</label>
-                                            <input type="email" class="form-control" name="email">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">شماره تماس</label>
-                                            <input type="number" class="form-control" name="phone">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">رمزعبور</label>
-                                            <input type="password" class="form-control" name="password">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">تکرار رمزعبور</label>
-                                            <input type="password" class="form-control" name="password_confirmation">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">نقش</label>
-                                            <select name="roles" class="form-control">
-
-                                                <option value="0" selected >انتخاب کنید</option>
-                                                @foreach($roles as $role)
-                                                    <option value="{{$role->id}}">{{$role->title}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">ایجاد</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Modal -->
+                    <x-modal.create id="modal-create" title="ساخت مدیر" action="{{route('admins.store')}}" >
+                        <x-form.input title="نام"  name="name" />
+                        <x-form.file-input title="عکس" name="profile_image" />
+                        <x-form.input title="ایمیل"  name="email" type="email" />
+                        <x-form.input title="شماره تماس"  name="phone" type="number" />
+                        <x-form.input title="رمز عبور"  name="password" type="password" />
+                        <x-form.input title="تکرار رمز عبور"  name="password_confirmation" type="password" />
+                        <x-form.select-option title="نقش" name="roles" >
+                            @foreach($roles as $role)
+                                <option value="{{$role->id}}" >{{$role->title}}</option>
+                            @endforeach
+                        </x-form.select-option>
+                    </x-modal.create>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" style="min-height: 500px">
@@ -125,95 +76,23 @@
     </div>
     <!-- End Row -->
 
-
     @foreach($users as $user)
+        <x-modal.destroy id="modal-destroy-{{$user->id}}" title="حذف مدیر" action="{{route('admins.destroy', $user->id)}}" title="{{$user->name}}" />
         <!-- Modal -->
-        <div class="modal fade" id="modal-destroy-{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-name" id="modal-create">حذف مدیر</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="{{route('admins.destroy', $user->id)}}" method="post">
-                        <div class="modal-body">
-                            @csrf
-                            @method('DELETE')
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">حذف</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- /Modal -->
-        <!-- Modal -->
-        <div class="modal fade" id="modal-edit-{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-name" id="modal-create">ویرایش مدیر</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="{{route('admins.update', $user->id)}}" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            @csrf
-                                @method('PUT')
-                            <input type="hidden" name="id" value="{{$user->id}}">
-
-                            <div class="form-group">
-                                <label for="">نام</label>
-                                <input value="{{$user->name}}" type="text" class="form-control" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="">عکس</label>
-                                <div class="custom-file">
-                                    <input type="file" name="profile_image" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="">ایمیل</label>
-                                <input value="{{$user->email}}" type="email" class="form-control" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="">شماره تماس</label>
-                                <input value="{{$user->phone}}" type="number" class="form-control" name="phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="">رمزعبور</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="">تکرار رمزعبور</label>
-                                <input type="password" class="form-control" name="password_confirmation">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">نقش</label>
-                                <select name="roles" class="form-control">
-                                    <option value="0" selected >انتخاب کنید</option>
-                                    @foreach($roles as $role)
-                                        <option value="{{$role->id}}" @if($user->hasRole($role)) selected @endif >{{$role->title}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">ویرایش</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <x-modal.update id="modal-edit-{{$user->id}}" title="ویرایش مدیر" action="{{route('admins.update', $user->id)}}" >
+            <input type="hidden" name="id" value="{{$user->id}}">
+            <x-form.input title="نام" :value="$user->name" name="name" />
+            <x-form.file-input title="عکس" name="profile_image" />
+            <x-form.input title="ایمیل" :value="$user->email" name="email" type="email" />
+            <x-form.input title="شماره تماس" :value="$user->phone" name="phone" type="number" />
+            <x-form.input title="رمز عبور"  name="password" type="password" />
+            <x-form.input title="تکرار رمز عبور"  name="password" type="password_confirmation" />
+            <x-form.select-option title="نقش" name="roles" >
+                @foreach($roles as $role)
+                    <option value="{{$role->id}}" @if($user->hasRole($role)) selected @endif >{{$role->title}}</option>
+                @endforeach
+            </x-form.select-option>
+        </x-modal.update>
         <!-- /Modal -->
     @endforeach
 

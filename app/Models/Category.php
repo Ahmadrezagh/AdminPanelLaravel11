@@ -14,14 +14,7 @@ class Category extends Model
         'parent_id'
         ];
 
-    public function isThisCategory(Category $category)
-    {
-        return ($this->id == $category->id);
-
-    }
-
-
-    public function parents()
+    public function parent()
     {
         return $this->belongsTo(Category::class,'parent_id', 'id');
     }
@@ -38,7 +31,8 @@ class Category extends Model
         }
         return $parent_ids;
     }
-    public function parentOfCategory(Category $category)
+
+    public function isParentOfCategory(Category $category)
     {
         return (in_array($this->id, $category->parent_ids));
     }

@@ -23,46 +23,15 @@
                 <div class="card-header">
                     <button class="btn btn-primary mb-3"  data-toggle="modal" data-target="#modal-create">افزودن دسته بندی</button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-create">ساخت دسته بندی</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
+                    <x-modal.create id="modal-create" title="ساخت دسته بندی" action="{{route('categories.store')}}" >
+                        <x-form.input title="نام"  name="title" />
+                        <x-form.select-option title="دسته بندی والد" name="parent_id" >
+                            @foreach($categories as $parent_category)
+                                <option value="{{$parent_category->id}}">{{$parent_category->title}}</option>
+                            @endforeach
+                        </x-form.select-option>
+                    </x-modal.create>
 
-                                <form action="{{route('categories.store')}}" method="post">
-                                    <div class="modal-body">
-                                        @csrf
-
-                                        <div class="form-group">
-                                            <label for="">نام</label>
-                                            <input type="text" class="form-control" name="title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">دسته بندی</label>
-                                            <select name="parent_id" class="form-control">
-
-                                                <option value="0" selected >انتخاب کنید</option>
-                                                @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->title}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">ایجاد</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Modal -->
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" style="min-height: 500px">
@@ -103,70 +72,18 @@
 
     @foreach($categories as $category)
         <!-- Modal -->
-        <div class="modal fade" id="modal-destroy-{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-create">حذف دسته بندی</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+        <x-modal.destroy id="modal-destroy-{{$category->id}}" title="حذف دسته بندی" action="{{route('categories.destroy', $category->id)}}" title="{{$category->title}}" />
 
-                    <form action="{{route('categories.destroy', $category->id)}}" method="post">
-                        <div class="modal-body">
-                            @csrf
-                            @method('DELETE')
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">حذف</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- /Modal -->
-        <!-- Modal -->
-        <div class="modal fade" id="modal-edit-{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-create">ویرایش دسته بندی</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <form action="{{route('categories.update', $category->id)}}" method="post">
-                        <div class="modal-body">
-                            @csrf
-                            @method('PUT')
-                            <div class="form-group">
-                                <label for="">نام</label>
-                                <input type="text" class="form-control" name="title" value="{{$category->title}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">دسته بندی</label>
-                                <select name="parent_id" class="form-control">
-                                    <option value="0" selected >انتخاب کنید</option>
-                                        @foreach($categories as $parent_category )
-                                            @if(!($parent_category->isThisCategory($category)) && ($category->parentOfCategory($parent_category)))
-                                                <option value="{{$parent_category->id}}" @if(@$category->parent_id == $parent_category->id) selected @endif>{{$parent_category->title}} </option>
-                                            @endif
-                                        @endforeach
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">ویرایش</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- /Modal -->
+        <x-modal.update id="modal-edit-{{$category->id}}" title="ساخت دسته بندی" action="{{route('categories.update',$category->id)}}" >
+            <x-form.input title="نام"  name="title" :value="$category->title" />
+            <x-form.select-option title="دسته بندی والد" name="parent_id" >
+                @foreach($categories as $parent_category)
+                    @if( ($parent_category->id != $category->id) && (!$category->isParentOfCategory($parent_category) ))
+                    <option value="{{$category->id}}" @if($category->parent_id == $parent_category->id) selected @endif >{{$parent_category->title}}</option>
+                    @endif
+                @endforeach
+            </x-form.select-option>
+        </x-modal.update>
     @endforeach
 
 
