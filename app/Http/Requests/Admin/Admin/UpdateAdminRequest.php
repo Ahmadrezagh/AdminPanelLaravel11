@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateSettingRequest extends FormRequest
+class UpdateAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,6 +23,11 @@ class UpdateSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => ['required'],
+            'password' => ['nullable','confirmed'],
+            'email' => ['required', Rule::unique('users', 'email')->ignore($this->id)],
+            'phone' => ['required', Rule::unique('users', 'phone')->ignore($this->id)],
+            'profile_image' => ['nullable', 'file'],
         ];
     }
 }

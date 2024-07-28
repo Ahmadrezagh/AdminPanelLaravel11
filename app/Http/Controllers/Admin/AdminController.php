@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreAdminRequest;
-use App\Http\Requests\Admin\UpdateAdminRequest;
+use App\Http\Requests\Admin\Admin\StoreAdminRequest;
+use App\Http\Requests\Admin\Admin\UpdateAdminRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,7 +53,7 @@ class AdminController extends Controller
             $validated['profile_image'] = upload_file($request->profile_image, '/profiles');
         }
         $admin = User::create($validated);
-        $admin ->update(['type' => User::$TYPES[1]]);
+        $admin->update(['type' => User::$TYPES[1]]);
         return back();
     }
 

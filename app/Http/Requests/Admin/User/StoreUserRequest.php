@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Admin\User;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateRoleRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +24,11 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required'
+            'name' => ['required'],
+            'password' => ['required','confirmed'],
+            'email' => ['required', Rule::unique('users', 'email')],
+            'phone' => ['required', Rule::unique('users', 'phone')],
+            'profile_image' => ['nullable', 'file'],
         ];
     }
 }
