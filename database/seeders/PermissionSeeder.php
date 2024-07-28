@@ -11,39 +11,33 @@ class PermissionSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+
+    public function run():void
     {
         $permissions = [
             [
-                'title' =>'مدیران',
-                'key' => 'admin'
+                'Admin',
+                'مدیر ها'
             ],
             [
-                'title' =>'کاربران',
-                'key' => 'user'
+                'Category',
+                'دسته بندی ها'
             ],
             [
-                'title' =>'نقش ها',
-                'key' => 'role'
+                'User',
+                'کاربران'
             ],
             [
-                'title' =>'دسته بندی',
-                'key' => 'category'
-            ],
-            [
-                'title' =>'خانه',
-                'key' => 'home'
-            ],
-            [
-                'title' =>'تنظیمات',
-                'key' => 'setting'
-            ],
-
+                'Setting',
+                'تنظیمات'
+            ]
         ];
-
         foreach ($permissions as $permission)
         {
-            Permission::create($permission);
+            Permission::create([
+                'key' => $permission[0],
+                'title' => $permission[1],
+            ]);
         }
     }
 }

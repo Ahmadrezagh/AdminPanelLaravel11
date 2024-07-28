@@ -25,4 +25,9 @@ class Setting extends Model
         'textarea',
         'file',
     ] ;
+
+    public static function getValue($key)
+    {
+        return self::where('key',$key)->pluck('value')->first();
+    }
 }

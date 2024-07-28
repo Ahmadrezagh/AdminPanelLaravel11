@@ -48,7 +48,7 @@ RUN mkdir -p /var/www/project
 WORKDIR /var/www/project
 COPY . .
 
-RUN cp .env.example .env
+RUN cp .env.docker .env
 
 #RUN composer dump-autoload
 

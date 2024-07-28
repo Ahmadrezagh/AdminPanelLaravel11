@@ -14,48 +14,55 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            [
-                'title'=>'1تنظیمات',
-                'key'=>'s1',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[0],
-                'value'=>'q',
+            [   'key' =>'name',
+                'type'=>'string',
+                'title'=>'نام وبسایت',
+                'value'=>'پنل ادمین لاراول ۱۰',
+                'setting_group_id'=>'1'
             ],
-            [
-                'title'=>'2تنظیمات',
-                'key'=>'s2',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[1],
-                'value'=>'09123456789',
+            [   'key' =>'logo',
+                'type'=>'file',
+                'title'=>'لوگو',
+                'value'=>'/uploads/settings/logo.png',
+                'setting_group_id'=>'1'
             ],
-            [
-                'title'=>'3تنظیمات',
-                'key'=>'s3',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[2],
-                'value'=>'j',
+            [   'key' =>'url',
+                'type'=>'string',
+                'title'=>'آدرس وبسایت',
+                'value'=>'http://localhost:8000',
+                'setting_group_id'=>'1'
             ],
-            [
-                'title'=>'4تنظیمات',
-                'key'=>'s4',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[3],
-                'value'=>'g',
+
+            [   'key' =>'terms',
+                'type'=>'textarea',
+                'title'=>'قوانین استفاده از وبسایت',
+                'value'=>'<p>قوانین استفاده از وبسایت را اینجا بنویسید....</p>',
+                'setting_group_id'=>'2'
             ],
-            [
-                'title'=>'5تنظیمات',
-                'key'=>'s5',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[4],
-                'value'=>'jf',
+            [   'key' =>'about_us',
+                'type'=>'textarea',
+                'title'=>'درباره ما',
+                'value'=>'<p>متن درباره ما ...</p>',
+                'setting_group_id'=>'2'
             ],
-            [
-                'title'=>'6تنظیمات',
-                'key'=>'s6',
-                'setting_group_id'=>'1',
-                'type'=>Setting::$types[5],
-                'value'=>'gfjft',
-            ]
+            [   'key' =>'contact_us',
+                'type'=>'textarea',
+                'title'=>'تماس با ما',
+                'value'=>'<p>متن تماس با ما...</p>',
+                'setting_group_id'=>'3'
+            ],
+            [   'key' =>'email',
+                'type'=>'string',
+                'title'=>'ایمیل',
+                'value'=>'support@site.com',
+                'setting_group_id'=>'2'
+            ],
+            [   'key' =>'phone',
+                'type'=>'string',
+                'title'=>'شماره تماس',
+                'value'=>'+98 021 123456',
+                'setting_group_id'=>'2'
+            ],
         ];
         foreach ($settings as $setting)
         {

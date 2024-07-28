@@ -13,14 +13,17 @@ class SettingGroupSeeder extends Seeder
      */
     public function run(): void
     {
-        $setting_groups = [
-            [
-                'title' =>'تنظیمات سایت',
-            ]
+        $groups = [
+            'وبسایت',
+            'درباره ما',
+            'تماس با ما',
+            'سئو',
         ];
-        foreach ($setting_groups as $setting_group)
+        foreach ($groups as $group)
         {
-            SettingGroup::create($setting_group);
+            SettingGroup::create([
+                'title' => $group
+            ]);
         }
     }
 }
