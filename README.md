@@ -1,66 +1,171 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Certainly! Below is an updated README file with two installation methods: one without Docker and one with Docker.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# Laravel Admin Panel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is a Laravel-based Admin Panel designed to streamline and simplify administrative tasks. The panel comes with essential features like authentication, access control, dynamic settings, and a versatile categories system. The project is dockerized for easy deployment and requires minimal setup.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Login and Register**: Secure authentication system allowing admins and users to log in and register.
+2. **Access Control List (ACL)**: Fine-grained access control to manage permissions for different user roles.
+3. **Admins and Users Management**: Efficient management of both admins and users, with options to add, edit, and delete users.
+4. **Dynamic Setting**: Configuration settings that can be adjusted dynamically through the admin interface.
+5. **Basic Categories Feature**: A flexible categories system that can be applied to various features such as products or blogs.
+6. **Dockerized Deployment**: Easy setup and deployment using Docker. Simply run `docker compose up -d` to start the project.
+7. **Reusable Components**: Pre-built components like form inputs and modals to accelerate the development of the admin panel.
 
-## Learning Laravel
+## Getting Started
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- PHP 8.0 or higher
+- Composer
+- MySQL or another database supported by Laravel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+#### Method 1: Without Docker
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone the repository:**
 
-### Premium Partners
+   ```bash
+   git clone https://github.com/Ahmadrezagh/AdminPanelLaravel11.git
+   cd AdminPanelLaravel11
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. **Copy the example environment file and set your environment variables:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Install dependencies:**
+
+   ```bash
+   composer install
+   ```
+
+4. **Generate the application key:**
+
+   ```bash
+   php artisan key:generate
+   ```
+
+5. **Run the migrations and seeders to set up the database:**
+
+   ```bash
+   php artisan reset
+   ```
+
+6. **Serve the application:**
+
+   ```bash
+   php artisan serve
+   ```
+
+7. **Access the application:**
+
+   Open your browser and navigate to `http://localhost:8000` (or your configured domain).
+
+#### Method 2: With Docker
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Ahmadrezagh/AdminPanelLaravel11.git
+   cd AdminPanelLaravel11
+   ```
+
+2. **Copy the Docker environment file and set your environment variables:**
+
+   ```bash
+   cp .env.docker .env
+   ```
+
+3. **Customize the `larave.conf` file as needed:**
+
+   Edit the `larave.conf` file in the project root to suit your server configuration.
+
+4. **Build and run the Docker containers:**
+
+   ```bash
+   docker compose up -d
+   ```
+
+5. **Run the migrations and seeders to set up the database:**
+
+   ```bash
+   docker compose exec app php artisan reset
+   ```
+
+6. **Generate the application key:**
+
+   ```bash
+   docker compose exec app php artisan key:generate
+   ```
+
+7. **Access the application:**
+
+   Open your browser and navigate to `http://localhost` (or your configured domain).
+
+## Usage
+
+### Authentication
+
+- **Register** a new user or **login** with existing credentials.
+- The default admin account can be set up via the seeders or manually through the database.
+
+### Access Control List (ACL)
+
+- Manage roles and permissions through the admin interface.
+- Assign roles to users to control access to various parts of the admin panel.
+
+### Admins and Users Management
+
+- Add, edit, or delete users.
+- Assign roles and manage user information.
+
+### Dynamic Settings
+
+- Modify settings dynamically through the admin panel to affect application behavior without changing code.
+
+### Categories
+
+- Create and manage categories.
+- Apply categories to different features like products or blogs.
+
+### Development Components
+
+- Utilize pre-built components like form inputs and modals to speed up the development process.
+
+## Customization
+
+### Laravel Configuration
+
+To customize the Laravel application, edit the files in the `config` directory. Common customizations include:
+
+- Database settings (`config/database.php`)
+- Mail settings (`config/mail.php`)
+- Session settings (`config/session.php`)
+
+### Docker Configuration
+
+To customize the Docker environment, edit the `docker-compose.yml` file and the `Dockerfile` as needed.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Contributions are welcome! Please fork this repository and submit a pull request with your changes.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you have any questions or need further assistance, please contact [your email address].
+
+---
+
+Feel free to further modify this README file to better suit your project specifics and preferences.
