@@ -28,7 +28,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::query()->admins()->get();
+        $users = User::query()->admins()->paginate();
         $roles = Role::query()->get();
         return view('admin.admins.index',compact('users', 'roles'));
     }

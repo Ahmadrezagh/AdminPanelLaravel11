@@ -58,6 +58,10 @@
             display: none;
         }
     </style>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.css">
+    @yield('head')
 </head>
 
 <body class="main-body leftmenu">
@@ -117,7 +121,7 @@
                             <span class="sidemenu-label">دسته بندی ها</span><i class="angle fe fe-chevron-left"></i></a>
                         <ul class="nav-sub">
                             <li class="nav-sub-item">
-                                <a class="nav-sub-link" href="{{route('categories.index')}}">دسته بندی</a>
+                                <a class="nav-sub-link" href="{{route('categories.index')}}">دسته بندی ها</a>
                             </li>
                         </ul>
                     </li>
@@ -178,7 +182,7 @@
             <div class="main-header-center">
                 <div class="responsive-logo">
                     <a href="{{route('home')}}"><img src="{{url('logo/long.png')}}" class="mobile-logo" alt="لوگو" style="width: 134px; height: 37px"></a>
-                    <a href="{{route('home')}}"><img src="dashboard/assets/img/brand/logo-light.png" class="mobile-logo-dark" alt="لوگو"></a>
+                    <a href="{{route('home')}}"><img src="{{url('logo/long.png')}}" class="mobile-logo-dark" alt="لوگو"></a>
                 </div>
                 <div class="input-group">
                     <div class="input-group-btn search-panel">
@@ -258,19 +262,19 @@
                         </div>
                         <div class="main-notification-list">
                             <div class="media new">
-                                <div class="main-img-user online"><img alt="آواتار" src="dashboard/assets/img/users/5.jpg"></div>
+                                <div class="main-img-user online"><img alt="آواتار" src="{{url('dashboard/assets/img/users/5.jpg')}}"></div>
                                 <div class="media-body">
                                     <p>به <strong>اولیویا جیمز</strong> برای شروع الگوی جدید تبریک می گوییم</p><span>15 بهمن  12:32 بعد از ظهر</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="main-img-user"><img alt="آواتار" src="dashboard/assets/img/users/2.jpg"></div>
+                                <div class="main-img-user"><img alt="آواتار" src="{{url('dashboard/assets/img/users/2.jpg')}}"></div>
                                 <div class="media-body">
                                     <p><strong></strong>پیام جدید <strong>جوشوا گری</strong> دریافت شد</p><span>13 بهمن   02:56 صبح</span>
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="main-img-user online"><img alt="آواتار" src="dashboard/assets/img/users/3.jpg"></div>
+                                <div class="main-img-user online"><img alt="آواتار" src="{{url('dashboard/assets/img/users/3.jpg')}}"></div>
                                 <div class="media-body">
                                     <p><strong>الیزابت لوئیس</strong> برنامه جدیدی را به فروش مجدد اضافه کرد</p><span>12 بهمن  10:40 بعد از ظهر</span>
                                 </div>
@@ -375,19 +379,19 @@
                             </div>
                             <div class="main-notification-list">
                                 <div class="media new">
-                                    <div class="main-img-user online"><img alt="آواتار" src="dashboard/assets/img/users/5.jpg"></div>
+                                    <div class="main-img-user online"><img alt="آواتار" src="{{url('dashboard/assets/img/users/5.jpg')}}"></div>
                                     <div class="media-body">
                                         <p>به <strong>اولیویا جیمز</strong> برای شروع الگوی جدید تبریک می گوییم</p><span>15 بهمن  12:32 بعد از ظهر</span>
                                     </div>
                                 </div>
                                 <div class="media">
-                                    <div class="main-img-user"><img alt="آواتار" src="dashboard/assets/img/users/2.jpg"></div>
+                                    <div class="main-img-user"><img alt="آواتار" src="{{url('dashboard/assets/img/users/2.jpg')}}"></div>
                                     <div class="media-body">
                                         <p><strong></strong>پیام جدید <strong>جوشوا گری</strong> دریافت شد</p><span>13 بهمن   02:56 صبح</span>
                                     </div>
                                 </div>
                                 <div class="media">
-                                    <div class="main-img-user online"><img alt="آواتار" src="dashboard/assets/img/users/3.jpg"></div>
+                                    <div class="main-img-user online"><img alt="آواتار" src="{{url('dashboard/assets/img/users/3.jpg')}}"></div>
                                     <div class="media-body">
                                         <p><strong>الیزابت لوئیس</strong> برنامه جدیدی را به فروش مجدد اضافه کرد</p><span>12 بهمن  10:40 بعد از ظهر</span>
                                     </div>
@@ -406,7 +410,7 @@
                     </div>
                     <div class="dropdown main-profile-menu">
                         <a class="d-flex" href="#">
-                            <span class="main-img-user"><img alt="آواتار" src="dashboard/assets/img/users/1.jpg"></span>
+                            <span class="main-img-user"><img alt="آواتار" src="{{url('dashboard/assets/img/users/1.jpg')}}"></span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="header-navheading">
@@ -467,8 +471,8 @@
 <!-- Back-to-top -->
 <a href="#top" id="back-to-top"><i class="fe fe-arrow-up"></i></a>
 
-<!-- Jquery js-->
-<script src="{{asset('dashboard/assets/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Include jQuery -->
+<script src="{{asset('dashboard/assets/js/jquery-3.6.0.min.js')}}"></script>
 
 <!-- Bootstrap js-->
 <script src="{{asset('dashboard/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
@@ -498,10 +502,7 @@
 
 <!-- Circle Progress js-->
 <script src="{{asset('dashboard/assets/js/circle-progress.min.js')}}"></script>
-<script src="{{asset('dashboard/assets/js/chart-circle.js')}}"></script>
 
-<!-- Internal Dashboard js-->
-<script src="{{asset('dashboard/assets/js/index.js')}}"></script>
 
 <!-- Sticky js -->
 <script src="{{asset('dashboard/assets/js/sticky.js')}}"></script>
@@ -513,10 +514,9 @@
 <script src="{{asset('dashboard/assets/switcher/js/switcher-rtl.js')}}"></script>
 
 <!-- jQuery -->
-<script src="{{URL::to('/').'/plugins/dataTables/jquery.dataTables.min.js'}}"></script>
-<script src="{{URL::to('/').'/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js'}}"></script>
-<script src="{{URL::to('/').'/plugins/datatables-responsive/js/dataTables.responsive.min.js'}}"></script>
-<script src="{{URL::to('/').'/plugins/datatables-responsive/js/responsive.bootstrap4.min.js'}}"></script>
+<script src="{{asset('dashboard/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('dashboard/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('dashboard/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
 <script>
     $(function () {
         $("#table").DataTable({
@@ -568,14 +568,223 @@
         toastr.error('{{$error}}')
     </script>
 @endforeach
+
 @yield('js')
 
 <script>
+
+    function hideId(id){
+        $(id).hide()
+    }
+    function showId(id){
+        $(id).show()
+    }
+    function hideButtonAndShowTab(id){
+        hideId(id)
+        showId(id+'-tab')
+    }
+    function hideTabAndShowButton(id){
+        showId(id)
+        hideId(id+'-tab')
+    }
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+
+    $(document).ready(function() {
+        $('.s2').select2();
+    });
+
     $('.logout').on('click',function(){
         event.preventDefault();
         document.getElementById('logout-form').submit();
     })
+
+    $(':file').on('change',function(){
+        //get the file name
+
+        toastr.success('فایل با موفقیت انتخاب شد')
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+        $(this).next('.custom-file-label').attr('class','custom-file-label text-left');
+
+
+    })
+
+
+    // Helper function to remove commas from formatted numbers
+    function removeCommas(value) {
+        return value.replace(/,/g, '');
+    }
+
+    // Helper function to format numbers with commas
+    function formatNumberWithCommas(value) {
+        return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    // Function to set the initial value for the hidden input
+    function setInitialHiddenValue(numberInput, hiddenInput) {
+        let inputValue = removeCommas(numberInput.value); // Get the raw value without commas
+        if (!isNaN(inputValue) && inputValue !== '') {
+            numberInput.value = formatNumberWithCommas(inputValue); // Format the value in the visible input
+            hiddenInput.value = inputValue; // Set the raw value in the hidden input
+        }
+    }
+
+    // Apply to all number inputs in the document
+    document.querySelectorAll('input[type="number"]').forEach(function (numberInput) {
+        // Create a hidden input to store the actual number
+        let hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = numberInput.name;  // Use the same name as the original input
+        numberInput.name = ''; // Remove the name from the visible input to avoid duplicate submission
+        hiddenInput.classList.add('hidden-number-input'); // Optional: For styling or future access
+        numberInput.parentNode.insertBefore(hiddenInput, numberInput.nextSibling); // Place the hidden input after the visible one
+
+        // Set the input type to 'text' for formatting purposes
+        numberInput.type = 'text';
+
+        // Set the initial value for edit pages or when the form is pre-populated
+        setInitialHiddenValue(numberInput, hiddenInput);
+
+        // Handle input event for number formatting
+        numberInput.addEventListener('input', function (e) {
+            let inputValue = removeCommas(e.target.value); // Get raw value by removing commas
+            if (!isNaN(inputValue) && inputValue !== '') {
+                e.target.value = formatNumberWithCommas(inputValue); // Display formatted number
+                hiddenInput.value = inputValue; // Set raw number in hidden input
+            } else {
+                hiddenInput.value = ''; // Clear hidden input if invalid
+            }
+        });
+
+        // Update the hidden input on blur (when the user leaves the input)
+        numberInput.addEventListener('blur', function (e) {
+            let inputValue = removeCommas(e.target.value);
+            hiddenInput.value = inputValue; // Ensure hidden input is updated on blur
+        });
+
+        // Handle form submission to update hidden inputs before submission
+        document.querySelector('form').addEventListener('submit', function (e) {
+            let inputValue = removeCommas(numberInput.value);
+            hiddenInput.value = inputValue; // Ensure hidden input is correctly set on form submit
+        });
+    });
+
+
+
 </script>
+<!-- Include Morilog Persian Date Picker JS -->
+<script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.js"></script>
+<script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.js"></script>
+
+<script>
+    function unixToDatetimeLocal(unixTimestamp) {
+        // Convert the Unix timestamp (seconds) to milliseconds
+        const date = new Date(unixTimestamp * 1000);
+
+        // Extract year, month, day, hour, and minute
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+
+        // Return in the 'YYYY-MM-DDTHH:MM' format
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+    }
+    // Convert Persian date to Unix timestamp (in seconds)
+    function persianDateToUnix(element) {
+        // alert("Hi")
+        let val = $(element).val(); // Get the value from the hidden input or the altField
+        if (val) {
+            $(element).val(unixToDatetimeLocal(val/1000)); // Set the value in the hidden input as Unix timestamp
+        }
+    }
+
+    $(document).ready(function() {
+        var dateInputs = document.querySelectorAll('input[type="date"]');
+        var counter = 1;
+
+        dateInputs.forEach(function(dateInput) {
+            dateInput.type = 'text';
+            var oldname = dateInput.name;
+            var observer_id = `date_picker_observer_${counter}`;
+            dateInput.name = '_' + oldname; // Rename the original input to avoid form submission
+            dateInput.classList.add('persian_date');
+
+            // Add a hidden input to store the Unix timestamp
+            $(dateInput).parent().append(`
+            <input type="hidden" name="${oldname}" id="${observer_id}" />
+        `);
+
+            // Initialize the Persian date picker
+            $(dateInput).pDatepicker({
+                observer: true,
+                initialValue: !!dateInput.value, // Check if there is an initial value
+                format: 'YYYY/MM/DD',
+                altField: "#" + observer_id, // Use the hidden input as altField
+                initialValueType: 'gregorian', // Initialize the picker with Gregorian date
+                onSelect: function() {
+                    persianDateToUnix(`#${observer_id}`); // Convert selected Persian date to Unix timestamp
+                }
+            });
+
+            // If there's an initial value, manually trigger the conversion
+            if (dateInput.value) {
+                let observer = $(`#${observer_id}`);
+                persianDateToUnix(observer);
+            }
+
+            counter++;
+        });
+
+        var dateTimeInputs = document.querySelectorAll('input[type="datetime-local"]');
+        var _counter = 1;
+
+        dateTimeInputs.forEach(function(dateInput) {
+            dateInput.type = 'text';
+            var _oldname = dateInput.name;
+            var _observer_id = `date_picker_observer_${_counter}`;
+            dateInput.name = '_' + _oldname; // Rename the original input to avoid form submission
+            dateInput.classList.add('persian_date');
+
+            // Add a hidden input to store the Unix timestamp
+            $(dateInput).parent().append(`
+            <input type="hidden" name="${_oldname}" id="${_observer_id}" />
+        `);
+
+            // Initialize the Persian datetime picker with time picker enabled
+            $(dateInput).pDatepicker({
+                observer: true,
+                initialValue: !!dateInput.value, // Check if there is an initial value
+                altField: "#" + _observer_id, // Use the hidden input as altField
+                initialValueType: 'gregorian', // Initialize the picker with Gregorian date
+                timePicker: {
+                    enabled: true,
+                    meridiem: {
+                        enabled: true
+                    }
+                },
+                onSelect: function() {
+                    persianDateToUnix(`#${_observer_id}`); // Convert selected Persian datetime to Unix timestamp
+                }
+            });
+
+            // If there's an initial value, manually trigger the conversion
+            if (dateInput.value) {
+                let observer = $(`#${_observer_id}`);
+                persianDateToUnix(observer);
+            }
+
+            _counter++;
+        });
+    });
+
+
+</script>
+
 
 </body>
 </html>

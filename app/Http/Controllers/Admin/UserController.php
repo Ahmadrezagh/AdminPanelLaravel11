@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::query()->users()->get();
+        $users = User::query()->users()->paginate();
         return view('admin.users.index',compact('users'));
     }
 

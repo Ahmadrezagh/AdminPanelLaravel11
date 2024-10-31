@@ -26,7 +26,7 @@
                         <x-form.input title="نام"  name="name" />
                         <x-form.file-input title="عکس" name="profile_image" />
                         <x-form.input title="ایمیل"  name="email" type="email" />
-                        <x-form.input title="شماره تماس"  name="phone" type="number" />
+                        <x-form.input title="شماره تماس"  name="phone" type="tel" />
                         <x-form.input title="رمز عبور"  name="password" type="password" />
                         <x-form.input title="تکرار رمز عبور"  name="password_confirmation" type="password" />
                     </x-modal.create>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" style="min-height: 500px">
-                        <table class="table" id="example1">
+                        <table class="table table-bordered" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-20p">تصویر پروفایل</th>
@@ -66,6 +66,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +83,7 @@
             <x-form.input title="نام" :value="$user->name" name="name" />
             <x-form.file-input title="عکس" name="profile_image" />
             <x-form.input title="ایمیل" :value="$user->email" name="email" type="email" />
-            <x-form.input title="شماره تماس" :value="$user->phone" name="phone" type="number" />
+            <x-form.input title="شماره تماس" :value="$user->phone" name="phone" type="tel" />
             <x-form.input title="رمز عبور"  name="password" type="password" />
             <x-form.input title="تکرار رمز عبور"  name="password" type="password_confirmation" />
         </x-modal.update>

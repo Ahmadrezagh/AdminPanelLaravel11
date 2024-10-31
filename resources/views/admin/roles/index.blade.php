@@ -35,7 +35,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" style="min-height: 500px">
-                        <table class="table" id="example1">
+                        <table class="table table-bordered" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-20p">نام</th>
@@ -62,6 +62,9 @@
                             @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        {{ $roles->links() }}
                     </div>
                 </div>
             </div>
