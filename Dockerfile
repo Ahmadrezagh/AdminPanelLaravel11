@@ -50,12 +50,14 @@ COPY . .
 
 RUN cp .env.docker .env
 
-#RUN composer dump-autoload
-
+# Install Composer dependencies
 RUN composer install
 
-#RUN php artisan migrate
-#RUN php artisan db:seed
+# Generate Laravel application key
+RUN php artisan key:generate
+
+# Check if database has tables, if not run php artisan migrate:reset
+RUN php artisan tinker --execute="if (!Schema::hasTable('migrations')) { Artisan::call('migrate:reset'); }"
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/project
