@@ -56,14 +56,12 @@ RUN composer install
 # Generate Laravel application key
 RUN php artisan key:generate
 
-# Check if database has tables, if not run php artisan migrate:reset
-RUN php artisan tinker --execute="if (!Schema::hasTable('migrations')) { Artisan::call('migrate:reset'); }"
-
 # Set permissions
 RUN chown -R www-data:www-data /var/www/project
 
 # Copy Apache configuration file
 COPY laravel.conf /etc/apache2/sites-available/000-default.conf
+
 
 # Expose port 80
 EXPOSE 80
