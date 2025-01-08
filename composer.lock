@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7ab98fb7915eefb3f0592639d317142",
+    "content-hash": "4971634d8f0853b01cb99138997dd306",
     "packages": [
         {
             "name": "brick/math",
@@ -2799,6 +2799,107 @@
             "time": "2024-07-20T21:41:07+00:00"
         },
         {
+            "name": "pishran/laravel-persian-slug",
+            "version": "v2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pishran/laravel-persian-slug.git",
+                "reference": "2ed3b9cbf77131d0044a74da82003be12f390f8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pishran/laravel-persian-slug/zipball/2ed3b9cbf77131d0044a74da82003be12f390f8a",
+                "reference": "2ed3b9cbf77131d0044a74da82003be12f390f8a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0",
+                "pishran/persian-slug": "^1.0",
+                "spatie/laravel-sluggable": "^2.0|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Pishran\\LaravelPersianSlug\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Farid Aghili",
+                    "email": "farid@pishranit.ir",
+                    "homepage": "https://www.faridaghili.ir",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Creates Persian slugs for Eloquent models.",
+            "homepage": "https://github.com/pishran/laravel-persian-slug",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "persian",
+                "slug"
+            ],
+            "support": {
+                "issues": "https://github.com/pishran/laravel-persian-slug/issues",
+                "source": "https://github.com/pishran/laravel-persian-slug/tree/v2.2.2"
+            },
+            "time": "2023-01-10T16:54:52+00:00"
+        },
+        {
+            "name": "pishran/persian-slug",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pishran/persian-slug.git",
+                "reference": "55bee490d45b77034ed04ecfe0adb1c15cde35fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pishran/persian-slug/zipball/55bee490d45b77034ed04ecfe0adb1c15cde35fa",
+                "reference": "55bee490d45b77034ed04ecfe0adb1c15cde35fa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.2|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/persian-slug.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Farid Aghili",
+                    "email": "farid@pishranit.ir",
+                    "homepage": "https://www.faridaghili.ir",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate a URL friendly slug from a given string.",
+            "homepage": "https://github.com/pishran/persian-slug",
+            "keywords": [
+                "persian",
+                "slug",
+                "string",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/pishran/persian-slug/issues",
+                "source": "https://github.com/pishran/persian-slug/tree/v1.2.1"
+            },
+            "time": "2023-01-10T16:55:09+00:00"
+        },
+        {
             "name": "psr/clock",
             "version": "1.0.0",
             "source": {
@@ -3513,6 +3614,65 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "spatie/laravel-sluggable",
+            "version": "3.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-sluggable.git",
+                "reference": "cfe8440ebce367b66bdfec6e1a7c8e33879092fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-sluggable/zipball/cfe8440ebce367b66bdfec6e1a7c8e33879092fc",
+                "reference": "cfe8440ebce367b66bdfec6e1a7c8e33879092fc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0|^8.0|^9.0",
+                "pestphp/pest": "^1.20|^2.0",
+                "spatie/laravel-translatable": "^5.0|^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Sluggable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate slugs when saving Eloquent models",
+            "homepage": "https://github.com/spatie/laravel-sluggable",
+            "keywords": [
+                "laravel-sluggable",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-sluggable/tree/3.7.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-30T09:06:04+00:00"
         },
         {
             "name": "symfony/clock",
@@ -8288,12 +8448,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

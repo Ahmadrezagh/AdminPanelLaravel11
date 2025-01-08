@@ -61,6 +61,7 @@
 
 
     <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('head')
 </head>
 
@@ -126,7 +127,39 @@
                         </ul>
                     </li>
                 @endif
-                @if ((Auth::user()->isAdmin() && Auth::user()->can('User')) || Auth::user()->isSuperAdmin() )
+                @if ((Auth::user()->isAdmin() && Auth::user()->can('Pages')) || Auth::user()->isSuperAdmin() )
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-sticky-note sidemenu-icon"></i>
+                            <span class="sidemenu-label">صفحه ها</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('pages.index')}}">صفحه ها</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                @if ((Auth::user()->isAdmin() && Auth::user()->can('Links')) || Auth::user()->isSuperAdmin() )
+                    <li class="nav-item">
+                        <a class="nav-link with-sub" href="#">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="fas fa-chain sidemenu-icon"></i>
+                            <span class="sidemenu-label">لینک ها</span><i class="angle fe fe-chevron-left"></i></a>
+                        <ul class="nav-sub">
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('header_links.index')}}">لینک های هدر</a>
+                            </li>
+                            <li class="nav-sub-item">
+                                <a class="nav-sub-link" href="{{route('footer_titles.index')}}">ستون های فوتر</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+            @if ((Auth::user()->isAdmin() && Auth::user()->can('User')) || Auth::user()->isSuperAdmin() )
                     <li class="nav-item">
                         <a class="nav-link with-sub" href="#">
                             <span class="shape1"></span>
@@ -517,6 +550,7 @@
 <script src="{{asset('dashboard/assets/plugins/datatable/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('dashboard/assets/plugins/datatable/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('dashboard/assets/plugins/datatable/dataTables.responsive.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(function () {
         $("#table").DataTable({
@@ -784,7 +818,19 @@
 
 
 </script>
+<script>
+    $(document).ready(function() {
+        $('.copy-btn').click(function() {
+            const copyText = $(this).closest('.form-group').find('.copy-input').val();
 
+            navigator.clipboard.writeText(copyText).then(() => {
+                alert("متن با موفقیت کپی شد");
+            }).catch(err => {
+                console.error("مشکل در خطا : ", err);
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
