@@ -831,6 +831,11 @@
         });
     });
 </script>
+<script>
+    $("textarea").not(".no_ck_editor").each(function() {
+        CKEDITOR.replace(this);
+    });
+</script>
 
 </body>
 </html>
